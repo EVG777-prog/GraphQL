@@ -12,23 +12,28 @@ export class TracksAPI extends RESTDataSource {
   }
 
   async createTrack(input: any) {
-    const updateTaskRes = await this.post('', input);
+    const newTrackRes = await this.post('', input);
     return {
-      ...updateTaskRes,
-      id: updateTaskRes._id,
+      ...newTrackRes,
+      id: newTrackRes._id,
     };
   }
 
   async updateTrack(id: string, input: any) {
-    const updateTaskRes = await this.put(id, input);
+    const updateTrackkRes = await this.put(id, input);
     return {
-      ...updateTaskRes,
-      id: updateTaskRes._id,
+      ...updateTrackkRes,
+      id: updateTrackkRes._id,
     };
   }
 
-  deleteTrack(id: string) {
-    return this.delete(id);
+  async deleteTrack(id: string) {
+    const res = await this.delete(id);
+    console.log(res);
+    if (res.deletedCount === 1) {
+      return { deleted: true };
+    }
+    return { deleted: false };
   }
 
   async getTrack(id: string) {

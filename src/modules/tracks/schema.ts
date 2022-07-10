@@ -12,7 +12,7 @@ export const typeDefsTracks = gql`
     "Update track"
     updateTrack(id: ID!, input: UpdateTrackInput): Track
     "Delete track"
-    deleteTrack(id: ID!): Track
+    deleteTrack(id: ID!): DeleteResponse
   }
 
   input CreateTrackInput {
@@ -33,6 +33,11 @@ export const typeDefsTracks = gql`
     duration: Int
     released: Int
     genresIds: [String]
+  }
+
+  type DeleteResponse {
+    "Delete response"
+    deleted: Boolean
   }
 
   type User {
