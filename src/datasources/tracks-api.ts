@@ -11,20 +11,12 @@ export class TracksAPI extends RESTDataSource {
     request.headers.set('Authorization', this.context.token);
   }
 
-  async createTrack(input: any) {
-    const newTrackRes = await this.post('', input);
-    return {
-      ...newTrackRes,
-      id: newTrackRes._id,
-    };
+  createTrack(input: any) {
+    return this.post('', input);
   }
 
-  async updateTrack(id: string, input: any) {
-    const updateTrackkRes = await this.put(id, input);
-    return {
-      ...updateTrackkRes,
-      id: updateTrackkRes._id,
-    };
+  updateTrack(id: string, input: any) {
+    return this.put(id, input);
   }
 
   async deleteTrack(id: string) {
@@ -36,19 +28,8 @@ export class TracksAPI extends RESTDataSource {
     return { deleted: false };
   }
 
-  async getTrack(id: string) {
-    const trackRes = await this.get(id);
-    console.log(trackRes);
-    return {
-      id: trackRes._id,
-      title: trackRes.title,
-      album: trackRes.album,
-      artists: trackRes.artists,
-      bands: trackRes.bands,
-      duration: trackRes.duration,
-      released: trackRes.released,
-      genres: trackRes.genres,
-    };
+  getTrack(id: string) {
+    return this.get(id);
   }
 
   async getTracks() {

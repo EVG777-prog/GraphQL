@@ -12,6 +12,7 @@ export const resolversTracks = {
   
   Track: {
     id: ({ _id }: any) => _id,
+    album: ({ id }: any, _: undefined, {dataSources}: any) => dataSources.albumsAPI.getAlbum(id),
   },
 };
 
