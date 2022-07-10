@@ -50,4 +50,8 @@ export class TracksAPI extends RESTDataSource {
       genres: trackRes.genres,
     };
   }
+
+  async getTracks() {
+    return (await this.get('')).items;
+  }
 }

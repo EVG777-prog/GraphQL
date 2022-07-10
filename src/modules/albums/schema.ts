@@ -1,40 +1,40 @@
 import { gql } from 'apollo-server';
 
-export const typeDefsTracks = gql`
+export const typeDefsAlbums = gql`
   extend type Query {
-    "Get track"
-    track(id: ID!): Track
-    "Get tracks"
-    tracks: [Track]
+    "Get album by id"
+    album(id: ID!): Album
+    "Get albums"
+    albums: [Album]
   }
 
   type Mutation {
-    "Create track"
-    createTrack(input: CreateTrackInput): Track
-    "Update track"
-    updateTrack(id: ID!, input: UpdateTrackInput): Track
-    "Delete track"
-    deleteTrack(id: ID!): DeleteResponse
+    "Create album"
+    createAlbum(input: CreateAlbumInput): Album
+    "Update album"
+    updateAlbum(id: ID!, input: UpdateAlbumInput): Album
+    "Delete album"
+    deleteAlbum(id: ID!): DeleteResponse
   }
 
-  input CreateTrackInput {
-    title: String!
-    albumId: String
-    artistsIds: [String]
-    bandsIds: [String]
-    duration: Int
+  input CreateAlbumInput {
+    name: String!
     released: Int
-    genresIds: [String]
+    artists: [String]
+    bands: [String]
+    tracks: [String]
+    genres: [String]
+    image: String
   }
 
-  input UpdateTrackInput {
-    title: String
-    albumId: String
-    artistsIds: [String]
-    bandsIds: [String]
-    duration: Int
+  input UpdateAlbumInput {
+    name: String
     released: Int
-    genresIds: [String]
+    artists: [String]
+    bands: [String]
+    tracks: [String]
+    genres: [String]
+    image: String
   }
 
   type DeleteResponse {
